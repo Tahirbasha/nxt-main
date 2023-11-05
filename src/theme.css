@@ -1,0 +1,9 @@
+[active-theme='Dark'] .navbar{
+    background-color: #272727 !important;
+  } 
+  [active-theme='Dark'] .App {
+    background-color: #272727 !important;
+  } 
+  [active-theme='Dark'] .hamburger {
+    color: #fff;
+  } 
