@@ -1,45 +1,24 @@
-import { useState, useEffect } from "react";
-import { getHomePageVideos } from "../apis/api-calls";
-import { IVideo } from "../apis/payload-interface";
-import { Video } from "../VideoItem/Video";
-import Loader from "../Utils/Loader";
+import { homepageApi } from "../constants/apis";
+import { useSelector } from "react-redux";
+import Videolayout from "../Layout/video-layout";
+import { useEffect, useState } from "react";
 
 const HomePage = () => {
-    const initialHomepageState: IHomePageState = {
-        isLoading: true,
-        isFetchFailed: false,
-        videos: []
-    };
-    const [homePageState, setHomePageState] = useState<IHomePageState>(initialHomepageState);
+    const { searchBy } = useSelector((state: any) => state.LayoutReducer);
+    const [videoLayoutState, setVideolayoutState] = useState<IVideolayoutState>({searchBy: ''});
     useEffect(() => {
-        getHomePageData();
-    }, []);
-    const getHomePageData = async () => {
-        const response = await getHomePageVideos();
-        if (response.isSuccess) {
-            setHomePageState({ ...homePageState, isLoading: false, isFetchFailed: false, videos: response.homePageData });
-        } else {
-            setHomePageState({ ...homePageState, isLoading: false, isFetchFailed: true, videos: response.homePageData });
-        }
-    }
-    if (homePageState.isLoading) {
-        return <Loader/>
-    } else {
-        return (
-            <div className="homepage-container">
-                {homePageState.videos.map((eachVideo, index) => {
-                    return (
-                        <Video video={eachVideo} />
-                    )
-                })}
-            </div>
-        );
-    }
+        setVideolayoutState({searchBy});
+    }, [searchBy]);
+    return (
+        <Videolayout
+            title=""
+            titleIcon=""
+            failureImage=""
+            api={homepageApi + videoLayoutState.searchBy}
+        />
+    )
 }
-
-interface IHomePageState {
-    videos: IVideo[];
-    isLoading: boolean;
-    isFetchFailed: boolean;
+interface IVideolayoutState {
+    searchBy: string;
 }
 export default HomePage;

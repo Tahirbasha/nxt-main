@@ -127,7 +127,7 @@ font-weight: 700;
   outline: 0;
   box-shadow: 0 0 0 0.25rem rgba(255, 5, 5, 0.25);
 }
-.homepage-container {
+.layout-container {
   display: flex;
   height: 91vh;
   flex-wrap: wrap;
@@ -137,6 +137,7 @@ font-weight: 700;
 .video-container{
   margin: 12px;
   width: 31%;
+  cursor: pointer;
 }
 .video-card {
   display: flex;
@@ -179,18 +180,18 @@ border-radius: 15px;
   font-weight: 600;
 }
 .custom-modal {
-position: absolute;
-height: 100vh;
-width: 100vw;
-z-index: 5000;
-top: 0;
-bottom: 0;
-left: 0;
-right: 0;
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+  z-index: 5000;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 .custom-modal-body {
   background: #fff;
@@ -201,4 +202,24 @@ align-items: center;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+.title-container {
+  display: flex;
+  align-items: center;
+  text-align: left;
+}
+.title-container>div:first-child {
+  background: #d9cfcf;
+  width: 7%;
+  padding: 25px;
+  text-align: center;
+  border-radius: 100%;
+  margin-right: 7px;
+}
+.title-container>div:first-child:hover {
+  background: #ff0000;
+}
+.title-container>span {
+  font-weight: 500;
+  font-size: 30px;
 }

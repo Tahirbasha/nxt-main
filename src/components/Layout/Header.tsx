@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import SvgIons from "../constants/svgPaths";
 import { useDispatch } from "react-redux";
-import { TOGGLE_SIDENAV, TOGGLE_THEME, TOGGLE_USER_DETAILS } from "../ReduxStore/layout";
+import { HOME_PAGE_SEARCHBY, TOGGLE_SIDENAV, TOGGLE_THEME, TOGGLE_USER_DETAILS } from "../ReduxStore/layout";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import Cookies from "js-cookie";
@@ -10,11 +10,18 @@ const Header = () => {
     const dispatch = useDispatch();
     const { activeTheme, isSideNavOpen, openUserModal } = useSelector((state: any) => state.LayoutReducer);
     const isDarkTheme = activeTheme === 'Dark';
-    const initialState: HeaderState = { isSideNavOpen: true, isModalOpen: false };
+    const initialState: HeaderState = { isSideNavOpen: true, isModalOpen: false, searchBy: '' };
     const [HeaderState, setHeaderState] = useState<HeaderState>(initialState);
     const handleLogout = () => {
         Cookies.remove('jwt_token');
         window.location.assign('/');
+    }
+    const getSearchByValue = (searchBy: string) => {
+        setHeaderState({...HeaderState, searchBy});
+    }
+    const handleSearchBy = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        dispatch({type: HOME_PAGE_SEARCHBY, data: HeaderState.searchBy});
     }
     return (
         <nav className="navbar navbar-expand-lg bg-body-tertiary">
@@ -35,8 +42,18 @@ const Header = () => {
                     </Link>
                 </span>
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                    <form className="d-flex search-container" role="search">
-                        <input className="form-control" type="search" placeholder="Search" aria-label="Search" />
+                    <form 
+                    className="d-flex search-container" 
+                    role="search" 
+                    onSubmit={(e) => handleSearchBy(e)}
+                    >
+                        <input 
+                            className="form-control" 
+                            type="search" 
+                            placeholder="Search" 
+                            aria-label="Search" 
+                            onChange={(e) => getSearchByValue(e.target.value)}
+                        />
                         <button className="btn btn-outline" type="submit">
                             <span dangerouslySetInnerHTML={{ __html: SvgIons.search }} />
                         </button>
@@ -102,5 +119,6 @@ const Header = () => {
 interface HeaderState {
     isSideNavOpen: boolean;
     isModalOpen: boolean;
+    searchBy: string;
 }
 export default Header;
