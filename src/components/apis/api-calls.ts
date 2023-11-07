@@ -1,5 +1,5 @@
 import { loginApi, videoItemDetailsApi } from "../constants/apis"
-import { ILoginCredentials } from "./payload-interface"
+import { ILoginCredentials, IVideoDetails } from "./payload-interface"
 import Cookies from 'js-cookie'
 
 export const login = async (loginDetails: ILoginCredentials) => {
@@ -50,21 +50,21 @@ export const login = async (loginDetails: ILoginCredentials) => {
     const response = await fetch(`${videoItemDetailsApi}${id}`, options);
     if (response.ok) {
       const data = await response.json();
-      const responseData = {
-        id: data.id,
-        title: data.title,
-        videoUrl: data.video_url,
-        thumbnailUrl: data.thumbnail_url,
-        name: data.channel ? data.channel.name : '',
-        profileImg: data.channel ? data.channel.profile_image_url : '',
-        subscriberCount: data.channel ? data.channel.subscriber_count : 0,
-        publishedTime: data.published_at,
-        viewCount: data.view_count,
-        description: data.description
+      const videoDetails: IVideoDetails = {
+        id: data.video_details.id,
+        title: data.video_details.title,
+        videoUrl: data.video_details.video_url,
+        thumbnailUrl: data.video_details.thumbnail_url,
+        name: data.video_details.channel ? data.video_details.channel.name : '',
+        profileImg: data.video_details.channel ? data.video_details.channel.profile_image_url : '',
+        subscriberCount: data.video_details.channel ? data.video_details.channel.subscriber_count : 0,
+        publishedTime: data.video_details.published_at,
+        viewCount: data.video_details.view_count,
+        description: data.video_details.description
       };
-      return {isSuccess: true, responseData};
+      return {isSuccess: true, videoDetails};
     } else {
-      return {isSuccess: true, responseData: null};
+      return {isSuccess: true};
     }
 
   };

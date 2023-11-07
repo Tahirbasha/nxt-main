@@ -1,9 +1,11 @@
-import { IVideo } from "../apis/payload-interface";
+import { IVideo, IVideoDetails } from "../apis/payload-interface";
 import SvgIons from "../constants/svgPaths";
+import { useNavigate }  from 'react-router-dom';
 
-export const Video = (props: { video: IVideo }) => {
+const Video = (props: { video: IVideo | IVideoDetails }) => {
+    const navigate = useNavigate();
     return (
-        <div className="video-container" onClick={() => window.location.assign(`/Video/${props.video.id}`)}>
+        <div className="video-container" onClick={() => navigate(`/Video/${props.video.id}`)}>
             <div>
                 <img src={props.video.thumbnailUrl} alt="thumbnail" className="thumbnail" />
             </div>
@@ -27,3 +29,4 @@ export const Video = (props: { video: IVideo }) => {
         </div>
     );
 };
+export default Video

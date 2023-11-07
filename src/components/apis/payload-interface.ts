@@ -12,3 +12,20 @@ export interface IVideo {
     profileImg?: string,
     publishedTime?: string,
 }
+export interface IVideoDetails {
+    id: string;
+    title: string;
+    videoUrl: string;
+    thumbnailUrl: string;
+    name: string;
+    profileImg: string;
+    subscriberCount: string;
+    publishedTime: string;
+    viewCount: string;
+    description: string;
+}
+
+export interface apiResponse {
+    isSuccess: boolean;
+    videoDetails?: IVideoDetails;
+}

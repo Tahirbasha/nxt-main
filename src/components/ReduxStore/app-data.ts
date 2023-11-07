@@ -1,9 +1,9 @@
 
-export const HOMEPAGE_RESPONSE = 'AppData/HOMEPAGE_RESPONSE';
+export const SAVED_VIDEOS = 'AppData/SAVED_VIDEOS';
 export const AppData = (state: Object = {}, action:{type: string, data: any}) => {
     switch (action.type) {
-        case HOMEPAGE_RESPONSE:
-            return {...state, responseData: action.data};
+        case SAVED_VIDEOS:
+            return {...state, savedVideos: action.data};
         default:
             break;
     }

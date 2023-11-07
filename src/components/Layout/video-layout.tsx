@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { getVideos } from "../apis/api-calls";
 import { IVideo } from "../apis/payload-interface";
-import { Video } from "../VideoItem/Video";
+import Video  from "../VideoItem/Video";
 import Loader from "../Utils/Loader";
 
 const Videolayout = (props: IVideolayoutProps) => {
