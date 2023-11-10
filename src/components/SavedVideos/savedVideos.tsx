@@ -1,7 +1,6 @@
 import { useSelector } from "react-redux";
 import Video from "../VideoItem/Video";
 import SvgIons from "../constants/svgPaths";
-import { IVideoDetailedInfoState } from "../VideoItem/videoDetailedPage";
 import { IVideoDetails } from "../apis/payload-interface";
 
 const SavedVideoList = () => {
@@ -10,30 +9,37 @@ const SavedVideoList = () => {
     const savedVideoList = savedVideos ? savedVideos : (storedVideos ? JSON.parse(storedVideos) : []);
     const getVideolayout = () => {
         if (!savedVideoList.length) {
-            return <h1>No Videos Saved</h1>
+            return (
+                <div className="no-results-found">
+                    <img src="..\no-saved-videos-img.png" alt="NoVideosImage" className="no-videos-img" />
+                    <h3>No Saved Videos Found.</h3>
+                </div>
+            );
         } else {
             return (
-                <div className="layout-container">
-                    {savedVideoList.map((eachVideo: IVideoDetails) => {
-                        return (
-                            <Video 
-                                video={eachVideo} 
-                                isSavedVideo={true}
-                            />
-                        )
-                    })}
-                </div>
+                <>
+                    <div className="title-container">
+                        <div>
+                            <span dangerouslySetInnerHTML={{ __html: SvgIons.savedLight }} />
+                        </div>
+                        <span>Saved Videos</span>
+                    </div>
+                    <div className="layout-container">
+                        {savedVideoList.map((eachVideo: IVideoDetails) => {
+                            return (
+                                <Video
+                                    video={eachVideo}
+                                    isSavedVideo={true}
+                                />
+                            )
+                        })}
+                    </div>
+                </>
             );
         }
     }
     return (
         <div>
-            <div className="title-container">
-                <div>
-                    <span dangerouslySetInnerHTML={{ __html: SvgIons.savedLight }} />
-                </div>
-                <span>Saved Videos</span>
-            </div>
             {getVideolayout()}
         </div>
     )

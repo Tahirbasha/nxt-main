@@ -3,7 +3,7 @@ import { getVideos } from "../apis/api-calls";
 import { IVideo } from "../apis/payload-interface";
 import Video from "../VideoItem/Video";
 import Loader from "../Utils/Loader";
-import { useSelector } from "react-redux";
+import FailureView from "./failure-view";
 
 const Videolayout = (props: IVideolayoutProps) => {
     const initialVideolayoutState: IVideolayoutState = {
@@ -13,8 +13,6 @@ const Videolayout = (props: IVideolayoutProps) => {
     };
     const hasMounted = useRef(false);
     const [VideolayoutState, setVideolayoutState] = useState<IVideolayoutState>(initialVideolayoutState);
-    const { activeTheme } = useSelector((state: any) => state.LayoutReducer);
-    const isDarkTheme = activeTheme === 'Dark';
     useEffect(() => {
         if (hasMounted.current) {
             getVideolayoutData();
@@ -31,20 +29,14 @@ const Videolayout = (props: IVideolayoutProps) => {
     }
     const getLayoutData = () => {
         switch (true) {
-            case (!VideolayoutState.isFetchFailed):
-                return (
-                    <div>
-                        {isDarkTheme ?
-                            <img src="..\failure-view-dark-theme-img.png" alt="nxtwatch logo" className="app-logo" />
-                            :
-                            <img src="..\failure-view-light-theme-img.png" alt="nxtwatch logo" className="app-logo" />
-                        }
-                    </div>
-                );
+            case (VideolayoutState.isFetchFailed):
+                return <FailureView />;
             case (!VideolayoutState.videos.length):
                 return (
-                    <div>
+                    <div className="no-results-found">
                         <img src="..\no-search-results-img.png" alt="no search results" className="no-videos-img" />
+                        <h3>No Search Results Found</h3>
+                        <p>Try different key words or remove search filter.</p>
                     </div>
                 );
             default:

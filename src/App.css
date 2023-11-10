@@ -143,7 +143,7 @@ font-weight: 700;
 }
 .video-container{
   margin: 12px;
-  width: 30%;
+  width: 31%;
   cursor: pointer;
 }
 .video-card {
@@ -311,4 +311,19 @@ justify-content: space-between;
 }
 .horizontal-navbar {
   display: none;
+}
+.failure-image{
+  width: 40%;
+}
+.no-results-found{
+  height: 60vh;
+  width: 70vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.no-videos-img{
+  width: 40%;
+  margin-bottom: 10px;
 }

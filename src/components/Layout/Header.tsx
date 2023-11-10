@@ -82,7 +82,7 @@ const Header = () => {
                                     </button>
                             }
                         </li>
-                        <li className="nav-item me-3">
+                        <li className="nav-item me-3 d-none">
                             <button
                                 className="btn btn-outline-transparent"
                                 onClick={() => dispatch({ type: TOGGLE_USER_DETAILS, data: !openUserModal })}

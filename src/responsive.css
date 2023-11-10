@@ -1,6 +1,6 @@
 @media (max-width: 1400px) {
     .title-container>div:first-child {
-        width: 8%;
+        width: 7%;
     }
 }
 
@@ -37,6 +37,12 @@
     .channel-image {
         height: 50px;
         width: 50px;
+    }
+    .failure-view {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center; 
     }
 }
 
@@ -167,6 +173,18 @@
     }
     .loader {
         width: 100vw;
+    }
+    .no-results-found  {
+        width: 100vw;
+    }
+    .failure-view {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center; 
+    }
+    .custom-modal-body{
+        width: 75%;
     }
 }
 
