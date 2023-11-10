@@ -24,24 +24,26 @@ const Header = () => {
         dispatch({type: HOME_PAGE_SEARCHBY, data: HeaderState.searchBy});
     }
     return (
-        <nav className="navbar navbar-expand-lg bg-body-tertiary">
-            <div className="container-fluid">
-                <button
-                    className="btn btn-outline-transparent hamburger"
-                    onClick={() => dispatch({ type: TOGGLE_SIDENAV, data: !isSideNavOpen })}
-                >
-                    <span dangerouslySetInnerHTML={{ __html: SvgIons.hamBurger }} />
-                </button>
-                <span className="app-logo-container">
-                    <Link to="/Homepage">
-                        {isDarkTheme ?
-                            <img src="..\nxt-watch-logo-dark-theme-img.png" alt="nxtwatch logo" className="app-logo" />
-                            :
-                            <img src="..\nxt-watch-logo-light-theme-img.png" alt="nxtwatch logo" className="app-logo" />
-                        }
-                    </Link>
-                </span>
-                <div className="collapse navbar-collapse" id="navbarSupportedContent">
+        <nav>
+            <div className="navbar-container py-2 px-1">
+                <div>
+                    <button
+                        className="btn btn-outline-transparent"
+                        onClick={() => dispatch({ type: TOGGLE_SIDENAV, data: !isSideNavOpen })}
+                    >
+                        <span dangerouslySetInnerHTML={{ __html: SvgIons.hamBurger }} />
+                    </button>
+                    <div className="app-logo-container">
+                        <Link to="/Homepage">
+                            {isDarkTheme ?
+                                <img src="..\nxt-watch-logo-dark-theme-img.png" alt="nxtwatch logo" className="app-logo" />
+                                :
+                                <img src="..\nxt-watch-logo-light-theme-img.png" alt="nxtwatch logo" className="app-logo" />
+                            }
+                        </Link>
+                    </div>
+                </div>
+                <div>
                     <form 
                     className="d-flex search-container" 
                     role="search" 
@@ -58,7 +60,7 @@ const Header = () => {
                             <span dangerouslySetInnerHTML={{ __html: SvgIons.search }} />
                         </button>
                     </form>
-                    <ul className="navbar-nav mb-2 mb-lg-0">
+                    <ul className="controls-container px-3">
                         <li className="nav-item me-3">
                             {
                                 isDarkTheme ?
@@ -93,6 +95,11 @@ const Header = () => {
                                 className="logout-button"
                                 onClick={() => setHeaderState({ ...HeaderState, isModalOpen: true })}
                             >Logout
+                            </button>
+                            <button
+                                className="nav-logout"
+                                onClick={() => setHeaderState({ ...HeaderState, isModalOpen: true })}
+                            > <span className="nav-logout" dangerouslySetInnerHTML={{ __html: SvgIons.logoutLight }} />
                             </button>
                         </li>
                     </ul>

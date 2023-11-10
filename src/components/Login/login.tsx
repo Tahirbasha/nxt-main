@@ -29,7 +29,6 @@ const Login = () => {
         }
     }
     return (
-        <div className="row">
             <div className="login-container col-12">
                 <div className="login-form shadow px-3 py-4">
                     <div className="logo-container">
@@ -79,7 +78,6 @@ const Login = () => {
                     </div>
                 </div>
             </div>
-        </div>
     );
 }
 interface IloginPageState {

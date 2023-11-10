@@ -3,7 +3,7 @@ import SvgIons from "../constants/svgPaths";
 
 const SideNav = (props: SideNavProps) => {
     return (
-        <div className="sidenav col-12" style={{ width: props.isOpen ? '250px' : '65px' }}>
+        <div className={`sidenav col-12 ${props.isOpen ? 'sidenav-width' : 'sidenav-shrink' }`}>
             <ul className="side-navbar">
                 <li className="nav-item">
                     <Link className="nav-link" to="/Homepage">

@@ -17,7 +17,7 @@ export const login = async (loginDetails: ILoginCredentials) => {
     }
   };
 
-  export const getVideos = async (api: string, searchBy?: string) => {
+  export const getVideos = async (api: string) => {
     const jwtToken = Cookies.get('jwt_token');
     const options = {
       method: 'GET',

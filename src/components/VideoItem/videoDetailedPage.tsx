@@ -9,9 +9,10 @@ import { SAVED_VIDEOS } from "../ReduxStore/app-data";
 import { useSelector } from "react-redux";
 
 const VideoDetailedInfo = () => {
-    const videoId = useParams().id;
+    const { id, type } = useParams();
     const dispatch = useDispatch();
     const { savedVideos } = useSelector((state: any) => state.AppData);
+    const storedVideos = localStorage.getItem('savedVideos');
     const initialState = {
         isLoading: false,
         isFetchFailed: false, isSaved: false,
@@ -20,35 +21,45 @@ const VideoDetailedInfo = () => {
             subscriberCount: '', publishedTime: '', viewCount: '', description: ''
         }
     };
-    const [videoDetailedInfoState, setVideoDetailedInfoState] = useState<IVideoDetailedInfoState>(initialState)
+    const [videoDetailedInfoState, setVideoDetailedInfoState] = useState<IVideoDetailedInfoState>(initialState);
     useEffect(() => {
+        // Initial state 
+        dispatch({ type: SAVED_VIDEOS, data: savedVideos ? savedVideos : (storedVideos ? JSON.parse(storedVideos) : []) });
         setVideoDetailedInfoState({ ...videoDetailedInfoState, isLoading: true });
         getVideoDetails();
-        dispatch({ type: SAVED_VIDEOS, data: savedVideos ? savedVideos :[] });
     }, []);
     const getVideoDetails = async () => {
-        const response: apiResponse = await getVideoDetailedInfo(videoId);
-        if (response.isSuccess && response.videoDetails) {
-            setVideoDetailedInfoState({ ...videoDetailedInfoState, videoDetails: { ...response.videoDetails }, isLoading: false });
+        if (type === 'saved') {
+            const savedVideo = (savedVideos ? savedVideos : (storedVideos ? JSON.parse(storedVideos) : [])).find((eachVideo: IVideoDetails) => eachVideo.id === id);
+            if (savedVideo) {
+                setVideoDetailedInfoState({ ...videoDetailedInfoState, videoDetails: {...savedVideo}, isLoading: false, isSaved: true });
+            }
         } else {
-            setVideoDetailedInfoState({ ...videoDetailedInfoState, isLoading: false, isFetchFailed: true });
+            const response: apiResponse = await getVideoDetailedInfo(id);
+            if (response.isSuccess && response.videoDetails) {
+                setVideoDetailedInfoState({ ...videoDetailedInfoState, videoDetails: { ...response.videoDetails }, isLoading: false });
+            } else {
+                setVideoDetailedInfoState({ ...videoDetailedInfoState, isLoading: false, isFetchFailed: true });
+            }
         }
     }
-    const handleVideoSave = () => {
-        setVideoDetailedInfoState({ ...videoDetailedInfoState, isSaved: !videoDetailedInfoState.isSaved });
-        if (savedVideos && savedVideos.length) {
+    const handleVideoSave = async () => {
+        await setVideoDetailedInfoState({ ...videoDetailedInfoState, isSaved: !videoDetailedInfoState.isSaved });
+        if (savedVideos.length) {
             const existingSavedVideos = [...savedVideos];
-            const videoIndex = existingSavedVideos.findIndex((each: IVideoDetailedInfoState) => each.videoDetails.id === videoDetailedInfoState.videoDetails.id);
+            const videoIndex = existingSavedVideos.findIndex((eachVideo: IVideoDetails) => eachVideo.id === videoDetailedInfoState.videoDetails.id);
             if (videoIndex > -1) {
                 existingSavedVideos.splice(videoIndex, 1);
             } else {
-                existingSavedVideos.push(videoDetailedInfoState);
+                existingSavedVideos.push(videoDetailedInfoState.videoDetails);
             }
             dispatch({ type: SAVED_VIDEOS, data: existingSavedVideos });
+            localStorage.setItem('savedVideos', JSON.stringify(existingSavedVideos));
         } else {
             const savedVideosArray = [];
-            savedVideosArray.push(videoDetailedInfoState);
+            savedVideosArray.push(videoDetailedInfoState.videoDetails);
             dispatch({ type: SAVED_VIDEOS, data: savedVideosArray });
+            localStorage.setItem('savedVideos', JSON.stringify(savedVideosArray));
         }
     }
     return (

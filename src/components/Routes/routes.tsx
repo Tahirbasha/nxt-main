@@ -14,9 +14,8 @@ const AppRoutes = () => {
         <Route path="/Homepage" element={<HomePage/>}/>
         <Route path="/Trending" element={<Trending/>}/>
         <Route path="/Gaming" element={<Gaming/>}/>
-        <Route path="/Video" element={<VideoDetailedInfo/>}/>
         <Route path="/Saved" element={<SavedVideoList/>}/>
-        <Route path="/Video/:id" element={<VideoDetailedInfo/>}/>
+        <Route path="/Video/:id/:type" element={<VideoDetailedInfo/>}/>
         <Route path="/NotFound" element={<NotFound/>}/>
       </Routes>
     );

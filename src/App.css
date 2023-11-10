@@ -1,11 +1,14 @@
+html, body {
+  height: 100%;
+}
 .App {
   text-align: center;
   background-color: rgb(248,249,250);
+  height: 100%;
 }
 .app-container {
  display: flex;
- margin-top: 5%;
- height: 89vh;
+ height: 90vh;
  overflow-y: hidden;
 }
 .navbar {
@@ -18,7 +21,6 @@
 }
 .app-logo-container{
   text-align: left;
-  padding-left: 10px;
 }
 .app-logo {
   width: 40%;
@@ -49,6 +51,7 @@
   background-color: rgb(248,249,250);
   overflow: hidden;
   transition: 0.5s;
+  height: 100%;
 }
 .user-modal {
   width: 250px;
@@ -59,7 +62,7 @@
   right: 145px;
 }
 .sidenav a {
-  padding: 8px 8px 8px 16px;
+  padding: 8px 8px 8px 6px;
   text-decoration: none;
   color: #818181;
   display: block;
@@ -73,7 +76,7 @@
   border: 0;
   width: 100%;
   text-align: left;
-  font-weight: 400;
+  font-weight: 500;
 
 }
 .side-navbar .nav-item button:hover {
@@ -140,7 +143,7 @@ font-weight: 700;
 }
 .video-container{
   margin: 12px;
-  width: 31%;
+  width: 30%;
   cursor: pointer;
 }
 .video-card {
@@ -159,6 +162,7 @@ border-radius: 15px;
 .channel-image {
   height: 60px;
   width: 60px;
+  margin-right: 10px;
 }
 .video-info {
   text-align: left;
@@ -206,6 +210,8 @@ border-radius: 15px;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  box-shadow: 4px 6px 19px -7px gray;
+  font-weight: 500;
 }
 .title-container {
   display: flex;
@@ -233,7 +239,7 @@ border-radius: 15px;
 }
 .video-player{
   height: 80vh;
-  width: 80vw;
+  width: 99%;
 }
 .video-player>div:first-child {
   height: 100% !important;
@@ -280,4 +286,29 @@ border-radius: 15px;
 }
 .save-button:hover {
   color: red;
+}
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.navbar-container>div:nth-child(1) {
+display: flex;
+align-items: center;
+}
+.navbar-container>div:nth-child(2) {
+display: flex;
+align-items: center;
+width: 80%;
+justify-content: space-between;
+}
+.navbar-container>div:nth-child(2)>ul {
+  display: flex;
+  list-style-type: none;
+  align-items: center;
+  margin: 0;
+  padding:0;
+}
+.horizontal-navbar {
+  display: none;
 }
