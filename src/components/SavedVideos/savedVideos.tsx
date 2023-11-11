@@ -2,10 +2,11 @@ import { useSelector } from "react-redux";
 import Video from "../VideoItem/Video";
 import SvgIons from "../constants/svgPaths";
 import { IVideoDetails } from "../apis/payload-interface";
+import Cookies from "js-cookie";
 
 const SavedVideoList = () => {
     const { savedVideos } = useSelector((state: any) => state.AppData);
-    const storedVideos = localStorage.getItem('savedVideos');
+    const storedVideos = Cookies.get('savedVideos');
     const savedVideoList = savedVideos ? savedVideos : (storedVideos ? JSON.parse(storedVideos) : []);
     const getVideolayout = () => {
         if (!savedVideoList.length) {

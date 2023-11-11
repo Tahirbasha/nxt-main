@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
 import { getVideoDetailedInfo } from "../apis/api-calls";
 import ReactPlayer from "react-player";
@@ -6,13 +6,16 @@ import SvgIons from "../constants/svgPaths";
 import { IVideoDetails, apiResponse } from "../apis/payload-interface";
 import { useDispatch } from "react-redux";
 import { SAVED_VIDEOS } from "../ReduxStore/app-data";
-import { useSelector } from "react-redux";
+import Cookies from "js-cookie";
 
 const VideoDetailedInfo = () => {
-    const { id, type } = useParams();
+    const { id } = useParams();
     const dispatch = useDispatch();
-    const { savedVideos } = useSelector((state: any) => state.AppData);
-    const storedVideos = localStorage.getItem('savedVideos');
+    const storedVideos = Cookies.get('savedVideos');
+    let localVideos: IVideoDetails[] = [];
+    if (storedVideos) {
+        localVideos = JSON.parse(storedVideos);
+    }
     const initialState = {
         isLoading: false,
         isFetchFailed: false, isSaved: false,
@@ -21,19 +24,22 @@ const VideoDetailedInfo = () => {
             subscriberCount: '', publishedTime: '', viewCount: '', description: ''
         }
     };
+    const mountedRef = useRef(false);
     const [videoDetailedInfoState, setVideoDetailedInfoState] = useState<IVideoDetailedInfoState>(initialState);
     useEffect(() => {
         // Initial state 
-        dispatch({ type: SAVED_VIDEOS, data: savedVideos ? savedVideos : (storedVideos ? JSON.parse(storedVideos) : []) });
+        dispatch({ type: SAVED_VIDEOS, data: localVideos });
         setVideoDetailedInfoState({ ...videoDetailedInfoState, isLoading: true });
-        getVideoDetails();
-    }, []);
+        if (mountedRef.current) {
+            getVideoDetails();
+        }
+        mountedRef.current = true;
+    }, [id]);
+    
     const getVideoDetails = async () => {
-        if (type === 'saved') {
-            const savedVideo = (savedVideos ? savedVideos : (storedVideos ? JSON.parse(storedVideos) : [])).find((eachVideo: IVideoDetails) => eachVideo.id === id);
-            if (savedVideo) {
-                setVideoDetailedInfoState({ ...videoDetailedInfoState, videoDetails: {...savedVideo}, isLoading: false, isSaved: true });
-            }
+        const savedVideo = localVideos.find((eachVideo: IVideoDetails) => eachVideo.id === id);
+        if (savedVideo) {
+            setVideoDetailedInfoState({ ...videoDetailedInfoState, videoDetails: {...savedVideo}, isLoading: false, isSaved: true });
         } else {
             const response: apiResponse = await getVideoDetailedInfo(id);
             if (response.isSuccess && response.videoDetails) {
@@ -45,8 +51,8 @@ const VideoDetailedInfo = () => {
     }
     const handleVideoSave = async () => {
         await setVideoDetailedInfoState({ ...videoDetailedInfoState, isSaved: !videoDetailedInfoState.isSaved });
-        if (savedVideos.length) {
-            const existingSavedVideos = [...savedVideos];
+        if (localVideos.length) {
+            const existingSavedVideos = [...localVideos];
             const videoIndex = existingSavedVideos.findIndex((eachVideo: IVideoDetails) => eachVideo.id === videoDetailedInfoState.videoDetails.id);
             if (videoIndex > -1) {
                 existingSavedVideos.splice(videoIndex, 1);
@@ -54,12 +60,12 @@ const VideoDetailedInfo = () => {
                 existingSavedVideos.push(videoDetailedInfoState.videoDetails);
             }
             dispatch({ type: SAVED_VIDEOS, data: existingSavedVideos });
-            localStorage.setItem('savedVideos', JSON.stringify(existingSavedVideos));
+            Cookies.set('savedVideos', JSON.stringify(existingSavedVideos), {expires: 1});
         } else {
             const savedVideosArray = [];
             savedVideosArray.push(videoDetailedInfoState.videoDetails);
             dispatch({ type: SAVED_VIDEOS, data: savedVideosArray });
-            localStorage.setItem('savedVideos', JSON.stringify(savedVideosArray));
+            Cookies.set('savedVideos', JSON.stringify(savedVideosArray), {expires: 1});
         }
     }
     return (

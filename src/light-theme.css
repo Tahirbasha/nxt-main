@@ -1,0 +1,84 @@
+[active-theme='Light'] .navbar{
+    background-color: #fff;
+  } 
+  [active-theme='Light'] .App {
+    background-color: #fff;
+  } 
+  [active-theme='Light'] .hamburger-btn
+  {
+    color: #000 !important;
+  } 
+  [active-theme='Light'] .nav-item button
+  {
+    color: #000 !important;
+  } 
+  [active-theme='Light'] .search-container button
+  {
+    color: #000 !important;
+  } 
+  [active-theme='Light'] .video-info
+  {
+    color: #000 !important;
+  } 
+  [active-theme='Light'] .title-container>span
+  {
+    color: #000 !important;
+  } 
+  [active-theme='Light'] .no-results-found
+  {
+    color: #000 !important;
+  } 
+  [active-theme='Light'] .video-info-container
+  {
+    color: #000 !important;
+  }
+  [active-theme='Light'] .like-button
+  {
+    color: #000 !important;
+  }
+  [active-theme='Light'] .dislike-button
+  {
+    color: #000 !important;
+  }
+  [active-theme='Light'] .save-button 
+  {
+    color: #000;
+  }
+  [active-theme='Light'] .like-button:hover
+  {
+    color: skyblue !important;
+  }
+  [active-theme='Light'] .dislike-button:hover
+  {
+    color: orange !important;
+  }
+  [active-theme='Light'] .save-button:hover
+  {
+    color: red;
+  }
+  [active-theme='Light'] .custom-modal-body
+  {
+    background: #fff !important;
+    color: #000 !important;
+  }
+  [active-theme='Light'] .horizontal-navbar
+  {
+    background: #fff !important;
+    color: #000 !important;
+  }
+  [active-theme='Light'] .nav-logout
+  {
+    color: #000 !important;
+  }
+  [active-theme='Light'] form
+  {
+    color: #000 !important;
+  }
+  [active-theme='Light'] .failure-view
+  {
+    color: #000 !important;
+  }
+  [active-theme='Light'] .login-form
+  {
+    background: #fff !important;
+  }

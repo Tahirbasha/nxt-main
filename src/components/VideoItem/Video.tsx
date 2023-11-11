@@ -14,7 +14,7 @@ const Video = (props: { video: IVideo | IVideoDetails, isSavedVideo?: boolean })
                     <div>
                         <img src={props.video.profileImg} alt="channelImage" className="channel-image" />
                     </div>
-                    : null
+                       : null
                 }
                 <div>
                     <div className="video-info">
@@ -29,4 +29,4 @@ const Video = (props: { video: IVideo | IVideoDetails, isSavedVideo?: boolean })
         </div>
     );
 };
-export default Video
+export default Video;

@@ -1,93 +1,74 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import SvgIons from "../constants/svgPaths";
 import { useDispatch } from "react-redux";
-import { HOME_PAGE_SEARCHBY, TOGGLE_SIDENAV, TOGGLE_THEME, TOGGLE_USER_DETAILS } from "../ReduxStore/layout";
-import { useState } from "react";
-import { useSelector } from "react-redux";
+import { HOME_PAGE_SEARCHBY } from "../ReduxStore/layout";
+import { useState, } from "react";
 import Cookies from "js-cookie";
 
-const Header = () => {
+const Header = (props: HeaderProps) => {
+    const navigate = useNavigate();
     const dispatch = useDispatch();
-    const { activeTheme, isSideNavOpen, openUserModal } = useSelector((state: any) => state.LayoutReducer);
-    const isDarkTheme = activeTheme === 'Dark';
     const initialState: HeaderState = { isSideNavOpen: true, isModalOpen: false, searchBy: '' };
     const [HeaderState, setHeaderState] = useState<HeaderState>(initialState);
-    const handleLogout = () => {
+    const handleLogout = async () => {
+        setHeaderState({ ...HeaderState, isModalOpen: false });
         Cookies.remove('jwt_token');
-        window.location.assign('/');
+        navigate('/', { replace: true })
     }
     const getSearchByValue = (searchBy: string) => {
-        setHeaderState({...HeaderState, searchBy});
+        setHeaderState({ ...HeaderState, searchBy });
     }
     const handleSearchBy = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        dispatch({type: HOME_PAGE_SEARCHBY, data: HeaderState.searchBy});
+        dispatch({ type: HOME_PAGE_SEARCHBY, data: HeaderState.searchBy });
     }
     return (
         <nav>
             <div className="navbar-container py-2 px-1">
                 <div>
                     <button
-                        className="btn btn-outline-transparent"
-                        onClick={() => dispatch({ type: TOGGLE_SIDENAV, data: !isSideNavOpen })}
+                        className="btn btn-outline-transparent hamburger-btn"
+                        onClick={() => props.handleSideNavToggle()}
                     >
                         <span dangerouslySetInnerHTML={{ __html: SvgIons.hamBurger }} />
                     </button>
                     <div className="app-logo-container">
                         <Link to="/Homepage">
-                            {isDarkTheme ?
-                                <img src="..\nxt-watch-logo-dark-theme-img.png" alt="nxtwatch logo" className="app-logo" />
-                                :
-                                <img src="..\nxt-watch-logo-light-theme-img.png" alt="nxtwatch logo" className="app-logo" />
-                            }
+                            <img src="..\nxt-watch-logo-dark-theme-img.png" alt="nxtwatch logo" className="app-logo app-logo-dark" />
+                            <img src="..\nxt-watch-logo-light-theme-img.png" alt="nxtwatch logo" className="app-logo app-logo-light" />
                         </Link>
                     </div>
                 </div>
                 <div>
-                    <form 
-                    className="d-flex search-container" 
-                    role="search" 
-                    onSubmit={(e) => handleSearchBy(e)}
+                    <form
+                        className="d-flex search-container"
+                        role="search"
+                        onSubmit={(e) => handleSearchBy(e)}
                     >
-                        <input 
-                            className="form-control" 
-                            type="search" 
-                            placeholder="Search" 
-                            aria-label="Search" 
+                        <input
+                            className="form-control"
+                            type="search"
+                            placeholder="Search"
+                            aria-label="Search"
                             onChange={(e) => getSearchByValue(e.target.value)}
                         />
-                        <button className="btn btn-outline" type="submit">
+                        <button className="btn btn-outline search-icon-btn" type="submit">
                             <span dangerouslySetInnerHTML={{ __html: SvgIons.search }} />
                         </button>
                     </form>
                     <ul className="controls-container px-3">
                         <li className="nav-item me-3">
-                            {
-                                isDarkTheme ?
-                                    <button
-                                        className="btn btn-outline-transparent"
-                                        onClick={() => dispatch({ type: TOGGLE_THEME, data: 'Light' })}
-                                    >
-                                        <span
-                                            dangerouslySetInnerHTML={{ __html: SvgIons.lightMode }}
-                                        />
-                                    </button> :
-                                    <button
-                                        className="btn btn-outline-transparent"
-                                        onClick={() => dispatch({ type: TOGGLE_THEME, data: 'Dark' })}
-                                    >
-                                        <span
-                                            dangerouslySetInnerHTML={{ __html: SvgIons.darkMode }}
-                                        />
-                                    </button>
-                            }
-                        </li>
-                        <li className="nav-item me-3 d-none">
                             <button
-                                className="btn btn-outline-transparent"
-                                onClick={() => dispatch({ type: TOGGLE_USER_DETAILS, data: !openUserModal })}
+                                className="btn btn-outline-transparent theme-btn-dark"
+                                onClick={() => props.getTheme('Light')}
                             >
-                                <img src="..\nxt-watch-profile-img.png" alt="profile-icon" height={30} />
+                            <span dangerouslySetInnerHTML={{ __html: SvgIons.lightMode }} />
+                            </button>
+                            <button
+                                className="btn btn-outline-transparent theme-btn-light"
+                                onClick={() => props.getTheme('Dark')}
+                            >
+                            <span dangerouslySetInnerHTML={{ __html: SvgIons.darkMode }} />
                             </button>
                         </li>
                         <li className="nav-item">
@@ -99,7 +80,7 @@ const Header = () => {
                             <button
                                 className="nav-logout"
                                 onClick={() => setHeaderState({ ...HeaderState, isModalOpen: true })}
-                            > <span className="nav-logout" dangerouslySetInnerHTML={{ __html: SvgIons.logoutLight }} />
+                            > <span dangerouslySetInnerHTML={{ __html: SvgIons.logoutLight }} />
                             </button>
                         </li>
                     </ul>
@@ -127,5 +108,9 @@ interface HeaderState {
     isSideNavOpen: boolean;
     isModalOpen: boolean;
     searchBy: string;
+}
+interface HeaderProps {
+    getTheme: (theme: string) => void;
+    handleSideNavToggle: () => void;
 }
 export default Header;
