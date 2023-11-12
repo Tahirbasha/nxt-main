@@ -13,9 +13,12 @@ import Cookies from 'js-cookie';
 
 const App = () => {
   const [appState, setAppState] = useState<AppState>({ theme: 'Light', isSideNavOpen: true });
+
   useEffect(() => {
     document.body.setAttribute('active-theme', appState.theme);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [appState.theme]);
+
   useEffect(() => {
     const theme = Cookies.get('theme');
     setAppState({ ...appState, theme: theme ? theme : 'Light' });
@@ -24,9 +27,10 @@ const App = () => {
     } else {
       document.body.setAttribute('active-theme', 'Light');
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const getThemeFromHeader = (theme: string) => {
-    Cookies.set('theme', theme, {expires: 1});
+    Cookies.set('theme', theme, { expires: 1 });
     setAppState({ ...appState, theme });
   };
   const handleSideNavToggle = () => {
