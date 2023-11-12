@@ -16,6 +16,7 @@ const Login = () => {
         if (jwtToken) {
             navigate('/Homepage');
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -59,7 +60,7 @@ const Login = () => {
                         <div className="form-group my-3">
                             <label htmlFor="password">PASSWORD</label>
                             <input
-                                type={loginState.showPassword ? 'text': 'password'}
+                                type={loginState.showPassword ? 'text' : 'password'}
                                 className="form-control"
                                 id="password"
                                 placeholder="Password"
@@ -71,12 +72,12 @@ const Login = () => {
                             />
                         </div>
                         <div className="form-group form-check">
-                            <input 
-                                type="checkbox" 
-                                className="form-check-input" 
-                                id="showPwd" 
+                            <input
+                                type="checkbox"
+                                className="form-check-input"
+                                id="showPwd"
                                 checked={loginState.showPassword}
-                                onChange={() => setLoginState({...loginState, showPassword: !loginState.showPassword})}
+                                onChange={() => setLoginState({ ...loginState, showPassword: !loginState.showPassword })}
                             />
                             <label className="form-check-label" htmlFor="showPwd">Show Password</label>
                         </div>
