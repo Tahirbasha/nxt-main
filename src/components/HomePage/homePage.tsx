@@ -1,7 +1,7 @@
 import { homepageApi } from "../constants/apis";
 import { useSelector } from "react-redux";
 import Videolayout from "../Layout/video-layout";
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState } from "react";
 
 const HomePage = () => {
     const { searchBy } = useSelector((state: any) => state.LayoutReducer);
