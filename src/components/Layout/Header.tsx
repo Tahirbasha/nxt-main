@@ -1,4 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
+import { useEffect } from 'react';
 import SvgIons from "../constants/svgPaths";
 import { useDispatch } from "react-redux";
 import { HOME_PAGE_SEARCHBY } from "../ReduxStore/layout";
@@ -22,6 +23,12 @@ const Header = (props: HeaderProps) => {
         e.preventDefault();
         dispatch({ type: HOME_PAGE_SEARCHBY, data: HeaderState.searchBy });
     }
+    useEffect(() => {
+        return () => {
+            setHeaderState({ ...HeaderState, searchBy: '' });
+        }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
     return (
         <nav>
             <div className="navbar-container py-2 px-1">
@@ -62,13 +69,13 @@ const Header = (props: HeaderProps) => {
                                 className="btn btn-outline-transparent theme-btn-dark"
                                 onClick={() => props.getTheme('Light')}
                             >
-                            <span dangerouslySetInnerHTML={{ __html: SvgIons.lightMode }} />
+                                <span dangerouslySetInnerHTML={{ __html: SvgIons.lightMode }} />
                             </button>
                             <button
                                 className="btn btn-outline-transparent theme-btn-light"
                                 onClick={() => props.getTheme('Dark')}
                             >
-                            <span dangerouslySetInnerHTML={{ __html: SvgIons.darkMode }} />
+                                <span dangerouslySetInnerHTML={{ __html: SvgIons.darkMode }} />
                             </button>
                         </li>
                         <li className="nav-item">
