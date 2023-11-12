@@ -26,17 +26,6 @@ const VideoDetailedInfo = () => {
     };
     const mountedRef = useRef(false);
     const [videoDetailedInfoState, setVideoDetailedInfoState] = useState<IVideoDetailedInfoState>(initialState);
-    useEffect(() => {
-        // Initial state 
-        dispatch({ type: SAVED_VIDEOS, data: localVideos });
-        setVideoDetailedInfoState({ ...videoDetailedInfoState, isLoading: true });
-        if (mountedRef.current) {
-            getVideoDetails();
-        }
-        mountedRef.current = true;
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
-    
     const getVideoDetails = async () => {
         const savedVideo = localVideos.find((eachVideo: IVideoDetails) => eachVideo.id === id);
         if (savedVideo) {
@@ -50,6 +39,16 @@ const VideoDetailedInfo = () => {
             }
         }
     }
+    useEffect(() => {
+        // Initial state 
+        dispatch({ type: SAVED_VIDEOS, data: localVideos });
+        setVideoDetailedInfoState({ ...videoDetailedInfoState, isLoading: true });
+        if (mountedRef.current) {
+            getVideoDetails();
+        }
+        mountedRef.current = true;
+    }, [dispatch, setVideoDetailedInfoState, getVideoDetails]);
+    
     const handleVideoSave = async () => {
         await setVideoDetailedInfoState({ ...videoDetailedInfoState, isSaved: !videoDetailedInfoState.isSaved });
         if (localVideos.length) {

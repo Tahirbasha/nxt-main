@@ -13,13 +13,6 @@ const Videolayout = (props: IVideolayoutProps) => {
     };
     const hasMounted = useRef(false);
     const [VideolayoutState, setVideolayoutState] = useState<IVideolayoutState>(initialVideolayoutState);
-    useEffect(() => {
-        if (hasMounted.current) {
-            getVideolayoutData();
-        }
-        hasMounted.current = true;
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
     const getVideolayoutData = async () => {
         const response = await getVideos(props.api);
         if (response.isSuccess) {
@@ -28,6 +21,12 @@ const Videolayout = (props: IVideolayoutProps) => {
             setVideolayoutState({ ...VideolayoutState, isLoading: false, isFetchFailed: true, videos: response.responseData });
         }
     }
+    useEffect(() => {
+        if (hasMounted.current) {
+            getVideolayoutData();
+        }
+        hasMounted.current = true;
+    }, [props.api, getVideolayoutData]);
     const getLayoutData = () => {
         switch (true) {
             case (VideolayoutState.isFetchFailed):
