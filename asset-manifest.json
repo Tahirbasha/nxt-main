@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/nxt-main/static/css/main.297555fb.css",
+    "main.js": "/nxt-main/static/js/main.5338b59b.js",
+    "index.html": "/nxt-main/index.html",
+    "main.297555fb.css.map": "/nxt-main/static/css/main.297555fb.css.map",
+    "main.5338b59b.js.map": "/nxt-main/static/js/main.5338b59b.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.297555fb.css",
+    "static/js/main.5338b59b.js"
+  ]
+}
