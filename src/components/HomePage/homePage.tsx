@@ -10,7 +10,8 @@ const HomePage = () => {
         if (searchBy !== undefined) {
             setVideolayoutState({searchBy});
         }
-    }, [searchBy, setVideolayoutState]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [searchBy]);
     return (
         <Videolayout
             title=""

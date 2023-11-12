@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { getVideoDetailedInfo } from "../apis/api-calls";
 import ReactPlayer from "react-player";
@@ -24,8 +24,9 @@ const VideoDetailedInfo = () => {
             subscriberCount: '', publishedTime: '', viewCount: '', description: ''
         }
     };
-    const mountedRef = useRef(false);
+    // const mountedRef = useRef(false);
     const [videoDetailedInfoState, setVideoDetailedInfoState] = useState<IVideoDetailedInfoState>(initialState);
+    
     const getVideoDetails = async () => {
         const savedVideo = localVideos.find((eachVideo: IVideoDetails) => eachVideo.id === id);
         if (savedVideo) {
@@ -39,15 +40,17 @@ const VideoDetailedInfo = () => {
             }
         }
     }
+
     useEffect(() => {
         // Initial state 
         dispatch({ type: SAVED_VIDEOS, data: localVideos });
         setVideoDetailedInfoState({ ...videoDetailedInfoState, isLoading: true });
-        if (mountedRef.current) {
-            getVideoDetails();
-        }
-        mountedRef.current = true;
-    }, [dispatch, setVideoDetailedInfoState, getVideoDetails]);
+        getVideoDetails();
+        // if (mountedRef.current) {
+        // }
+        // mountedRef.current = true;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
     
     const handleVideoSave = async () => {
         await setVideoDetailedInfoState({ ...videoDetailedInfoState, isSaved: !videoDetailedInfoState.isSaved });

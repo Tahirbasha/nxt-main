@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { getVideos } from "../apis/api-calls";
 import { IVideo } from "../apis/payload-interface";
 import Video from "../VideoItem/Video";
@@ -11,7 +11,7 @@ const Videolayout = (props: IVideolayoutProps) => {
         isFetchFailed: false,
         videos: []
     };
-    const hasMounted = useRef(false);
+    // const hasMounted = useRef(false);
     const [VideolayoutState, setVideolayoutState] = useState<IVideolayoutState>(initialVideolayoutState);
     const getVideolayoutData = async () => {
         const response = await getVideos(props.api);
@@ -22,11 +22,12 @@ const Videolayout = (props: IVideolayoutProps) => {
         }
     }
     useEffect(() => {
-        if (hasMounted.current) {
-            getVideolayoutData();
-        }
-        hasMounted.current = true;
-    }, [props.api, getVideolayoutData]);
+        getVideolayoutData();
+        // if (hasMounted.current) {
+        // }
+        // hasMounted.current = true;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [props.api]);
     const getLayoutData = () => {
         switch (true) {
             case (VideolayoutState.isFetchFailed):
