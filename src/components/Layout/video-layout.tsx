@@ -19,7 +19,7 @@ const Videolayout = (props: IVideolayoutProps) => {
         }
         hasMounted.current = true;
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [props]);
+    }, []);
     const getVideolayoutData = async () => {
         const response = await getVideos(props.api);
         if (response.isSuccess) {
