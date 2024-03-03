@@ -1,9 +1,9 @@
-@media (max-width: 1400px) {
+@media (min-width: 1400px) {
     .title-container>div:first-child {
         width: 7%;
     }
     .login-form {
-        width: 23%;
+        width: 30%;
     }
 }
 
@@ -30,10 +30,6 @@
     .custom-modal-body {
         height: 25%;
         width: 65%;
-    }
-
-    .login-form {
-        height: auto;
     }
 
     .video-info {
