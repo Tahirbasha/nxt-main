@@ -7,34 +7,16 @@
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
 ## 📋 Table of Contents
-
-- [NxtWatch](#nxtwatch)
-  - [📋 Table of Contents](#-table-of-contents)
-  - [✨ Features](#-features)
-  - [🛠 Tech Stack](#-tech-stack)
-    - [Frontend](#frontend)
-    - [Styling](#styling)
-    - [Development Tools](#development-tools)
-  - [📁 Project Structure](#-project-structure)
-  - [🚀 Getting Started](#-getting-started)
-    - [Prerequisites](#prerequisites)
-    - [Installation](#installation)
-  - [🔧 Environment Variables](#-environment-variables)
-  - [📜 Available Scripts](#-available-scripts)
-    - [`npm start`](#npm-start)
-    - [`npm run build`](#npm-run-build)
-    - [`npm test`](#npm-test)
-    - [`npm run lint`](#npm-run-lint)
-  - [📖 About](#-about)
-    - [User Flow](#user-flow)
-    - [Key Features Explained](#key-features-explained)
-  - [🌐 Deployment](#-deployment)
-    - [Deployment Steps](#deployment-steps)
-  - [🤝 Contributing](#-contributing)
-    - [Development Guidelines](#development-guidelines)
-  - [📝 License](#-license)
-  - [👤 Author](#-author)
-  - [🙏 Acknowledgments](#-acknowledgments)
+- [Features](#-features)
+- [Tech Stack](#-tech-stack)
+- [Project Structure](#-project-structure)
+- [Getting Started](#-getting-started)
+- [Environment Variables](#-environment-variables)
+- [Available Scripts](#-available-scripts)
+- [About](#-about)
+- [Deployment](#-deployment)
+- [Contributing](#-contributing)
+- [License](#-license)
 
 ## ✨ Features
 
@@ -72,30 +54,52 @@
 ```
 nxt-main/
 ├── public/
-│   ├── images/              # Static images and assets
+│   ├── images/                    # Static images and assets
 │   └── index.html
 ├── src/
 │   ├── components/
-│   │   ├── apis/           # API service functions
-│   │   ├── constants/      # Constants and configurations
-│   │   ├── Gaming/         # Gaming page component
-│   │   ├── HomePage/       # Home page component
-│   │   ├── Layout/         # Layout components (Header, SideNav, etc.)
-│   │   ├── Login/          # Authentication component
-│   │   ├── NotFound/       # 404 error page
-│   │   ├── ReduxStore/     # Redux store configuration
-│   │   ├── Routes/         # Route definitions
-│   │   ├── SavedVideos/    # Saved videos page
-│   │   ├── Trending/       # Trending videos page
-│   │   ├── Utils/          # Utility components (Loader, etc.)
-│   │   └── VideoItem/      # Video-related components
-│   ├── App.tsx             # Main App component
-│   ├── App.css             # App styles
-│   ├── index.tsx           # Application entry point
-│   ├── index.css           # Global styles
-│   ├── theme.css           # Theme variables
-│   ├── light-theme.css     # Light theme styles
-│   └── responsive.css      # Responsive styles
+│   │   ├── apis/                  # API service functions
+│   │   │   ├── api-calls.ts
+│   │   │   └── payload-interface.ts
+│   │   ├── constants/             # Constants and configurations
+│   │   │   ├── apis.ts
+│   │   │   └── svg-paths.ts
+│   │   ├── gaming/                 # Gaming page component
+│   │   │   └── gaming-page.tsx
+│   │   ├── home-page/              # Home page component
+│   │   │   └── home-page.tsx
+│   │   ├── layout/                 # Layout components
+│   │   │   ├── failure-view.tsx
+│   │   │   ├── header.tsx
+│   │   │   ├── side-nav.tsx
+│   │   │   └── video-layout.tsx
+│   │   ├── login/                  # Authentication component
+│   │   │   └── login.tsx
+│   │   ├── not-found/              # 404 error page
+│   │   │   └── not-found-view.tsx
+│   │   ├── redux-store/            # Redux store configuration
+│   │   │   ├── app-data.ts
+│   │   │   ├── layout.ts
+│   │   │   ├── root-reducers.ts
+│   │   │   └── store.ts
+│   │   ├── routes/                  # Route definitions
+│   │   │   └── routes.tsx
+│   │   ├── saved-videos/           # Saved videos page
+│   │   │   └── saved-videos.tsx
+│   │   ├── trending/               # Trending videos page
+│   │   │   └── trending-page.tsx
+│   │   ├── utils/                  # Utility components
+│   │   │   └── loader.tsx
+│   │   └── video-item/             # Video-related components
+│   │       ├── video.tsx
+│   │       └── video-detailed-page.tsx
+│   ├── App.tsx                     # Main App component
+│   ├── App.css                     # App styles
+│   ├── index.tsx                   # Application entry point
+│   ├── index.css                   # Global styles
+│   ├── theme.css                   # Theme variables
+│   ├── light-theme.css             # Light theme styles
+│   └── responsive.css              # Responsive styles
 ├── package.json
 ├── tsconfig.json
 └── README.md
@@ -105,8 +109,8 @@ nxt-main/
 
 ### Prerequisites
 
-- **Node.js** (v14.0.0 or higher)
-- **npm** (v6.0.0 or higher) or **yarn**
+- **Node.js** (v24.0.0 or higher)
+- **npm** (v10.0.0 or higher) or **yarn**
 
 ### Installation
 
