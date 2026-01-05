@@ -3,12 +3,12 @@ import './theme.css';
 import './light-theme.css';
 import './responsive.css';
 import React, { useEffect, useState } from 'react';
-import AppRoutes from './components/Routes/routes';
-import Header from './components/Layout/Header';
-import SideNav from './components/Layout/SideNav';
-import Login from './components/Login/login';
+import AppRoutes from './components/routes/routes';
+import Header from './components/layout/header';
+import SideNav from './components/layout/side-nav';
+import Login from './components/login/login';
 import { Link, useLocation } from 'react-router-dom';
-import SvgIons from './components/constants/svgPaths';
+import SvgIons from './components/constants/svg-paths';
 import Cookies from 'js-cookie';
 
 const App = () => {

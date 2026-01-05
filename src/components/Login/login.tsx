@@ -36,9 +36,9 @@ const Login = () => {
             <div className="login-form shadow px-3 py-4">
                 <div className="logo-container">
                     {isDarkTheme ?
-                        <img src="..\nxt-watch-logo-dark-theme-img.png" alt="nxtwatch logo" className="login-app-logo" />
+                        <img src="/nxt-watch-logo-dark-theme-img.png" alt="nxtwatch logo" className="login-app-logo" />
                         :
-                        <img src="..\nxt-watch-logo-light-theme-img.png" alt="nxtwatch logo" className="login-app-logo" />
+                        <img src="/nxt-watch-logo-light-theme-img.png" alt="nxtwatch logo" className="login-app-logo" />
                     }
                 </div>
                 <div>

@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { getVideos } from "../apis/api-calls";
 import { IVideo } from "../apis/payload-interface";
-import Video from "../VideoItem/Video";
-import Loader from "../Utils/Loader";
+import Video from "../video-item/video";
+import Loader from "../utils/loader";
 import FailureView from "./failure-view";
 
 const Videolayout = (props: IVideolayoutProps) => {
@@ -35,7 +35,7 @@ const Videolayout = (props: IVideolayoutProps) => {
             case (!VideolayoutState.videos.length):
                 return (
                     <div className="no-results-found">
-                        <img src="..\no-search-results-img.png" alt="no search results" className="no-videos-img" />
+                        <img src="/no-search-results-img.png" alt="no search results" className="no-videos-img" />
                         <h3>No Search Results Found</h3>
                         <p>Try different key words or remove search filter.</p>
                     </div>

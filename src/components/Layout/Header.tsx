@@ -1,8 +1,8 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect } from 'react';
-import SvgIons from "../constants/svgPaths";
+import SvgIons from "../constants/svg-paths";
 import { useDispatch } from "react-redux";
-import { HOME_PAGE_SEARCHBY } from "../ReduxStore/layout";
+import { HOME_PAGE_SEARCHBY } from "../redux-store/layout";
 import { useState, } from "react";
 import Cookies from "js-cookie";
 
@@ -27,7 +27,6 @@ const Header = (props: HeaderProps) => {
         return () => {
             setHeaderState({ ...HeaderState, searchBy: '' });
         }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
     return (
         <nav>
@@ -41,8 +40,8 @@ const Header = (props: HeaderProps) => {
                     </button>
                     <div className="app-logo-container">
                         <Link to="/Homepage">
-                            <img src="..\nxt-watch-logo-dark-theme-img.png" alt="nxtwatch logo" className="app-logo app-logo-dark" />
-                            <img src="..\nxt-watch-logo-light-theme-img.png" alt="nxtwatch logo" className="app-logo app-logo-light" />
+                            <img src="/nxt-watch-logo-dark-theme-img.png" alt="nxtwatch logo" className="app-logo app-logo-dark" />
+                            <img src="/nxt-watch-logo-light-theme-img.png" alt="nxtwatch logo" className="app-logo app-logo-light" />
                         </Link>
                     </div>
                 </div>

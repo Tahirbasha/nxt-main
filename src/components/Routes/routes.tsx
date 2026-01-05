@@ -1,11 +1,11 @@
 import {Routes, Route} from 'react-router-dom';
-import Gaming from '../Gaming/gamingPage';
-import HomePage from '../HomePage/homePage';
-import Login from '../Login/login';
-import NotFound from '../NotFound/notFoundView';
-import SavedVideoList from '../SavedVideos/savedVideos';
-import Trending from '../Trending/trendingPage';
-import VideoDetailedInfo from '../VideoItem/videoDetailedPage';
+import Gaming from '../gaming/gaming-page';
+import HomePage from '../home-page/home-page';
+import Login from '../login/login';
+import NotFound from '../not-found/not-found-view';
+import SavedVideoList from '../saved-videos/saved-videos';
+import Trending from '../trending/trending-page';
+import VideoDetailedInfo from '../video-item/video-detailed-page';
 
 const AppRoutes = () => {
     return (

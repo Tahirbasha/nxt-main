@@ -28,4 +28,16 @@ export interface IVideoDetails {
 export interface apiResponse {
     isSuccess: boolean;
     videoDetails?: IVideoDetails;
+    errorMsg?: string;
+}
+
+export interface IVideosResponse {
+    isSuccess: boolean;
+    responseData: IVideo[];
+    errorMsg?: string;
+}
+
+export interface ILoginResponse {
+    isSuccess: boolean;
+    errorMsg?: string;
 }
