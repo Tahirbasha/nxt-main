@@ -7,7 +7,6 @@
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
 ## 📋 Table of Contents
-
 - [Features](#-features)
 - [Tech Stack](#-tech-stack)
 - [Project Structure](#-project-structure)
@@ -55,30 +54,52 @@
 ```
 nxt-main/
 ├── public/
-│   ├── images/              # Static images and assets
+│   ├── images/                    # Static images and assets
 │   └── index.html
 ├── src/
 │   ├── components/
-│   │   ├── apis/           # API service functions
-│   │   ├── constants/      # Constants and configurations
-│   │   ├── Gaming/         # Gaming page component
-│   │   ├── HomePage/       # Home page component
-│   │   ├── Layout/         # Layout components (Header, SideNav, etc.)
-│   │   ├── Login/          # Authentication component
-│   │   ├── NotFound/       # 404 error page
-│   │   ├── ReduxStore/     # Redux store configuration
-│   │   ├── Routes/         # Route definitions
-│   │   ├── SavedVideos/    # Saved videos page
-│   │   ├── Trending/       # Trending videos page
-│   │   ├── Utils/          # Utility components (Loader, etc.)
-│   │   └── VideoItem/      # Video-related components
-│   ├── App.tsx             # Main App component
-│   ├── App.css             # App styles
-│   ├── index.tsx           # Application entry point
-│   ├── index.css           # Global styles
-│   ├── theme.css           # Theme variables
-│   ├── light-theme.css     # Light theme styles
-│   └── responsive.css      # Responsive styles
+│   │   ├── apis/                  # API service functions
+│   │   │   ├── api-calls.ts
+│   │   │   └── payload-interface.ts
+│   │   ├── constants/             # Constants and configurations
+│   │   │   ├── apis.ts
+│   │   │   └── svg-paths.ts
+│   │   ├── gaming/                 # Gaming page component
+│   │   │   └── gamingPage.tsx
+│   │   ├── home-page/              # Home page component
+│   │   │   └── homePage.tsx
+│   │   ├── layout/                 # Layout components
+│   │   │   ├── failure-view.tsx
+│   │   │   ├── header.tsx
+│   │   │   ├── side-nav.tsx
+│   │   │   └── video-layout.tsx
+│   │   ├── login/                  # Authentication component
+│   │   │   └── login.tsx
+│   │   ├── not-found/              # 404 error page
+│   │   │   └── notFoundView.tsx
+│   │   ├── redux-store/            # Redux store configuration
+│   │   │   ├── app-data.ts
+│   │   │   ├── layout.ts
+│   │   │   ├── root-reducers.ts
+│   │   │   └── store.ts
+│   │   ├── routes/                  # Route definitions
+│   │   │   └── routes.tsx
+│   │   ├── saved-videos/           # Saved videos page
+│   │   │   └── savedVideos.tsx
+│   │   ├── trending/               # Trending videos page
+│   │   │   └── trendingPage.tsx
+│   │   ├── utils/                  # Utility components
+│   │   │   └── loader.tsx
+│   │   └── video-item/             # Video-related components
+│   │       ├── Video.tsx
+│   │       └── videoDetailedPage.tsx
+│   ├── App.tsx                     # Main App component
+│   ├── App.css                     # App styles
+│   ├── index.tsx                   # Application entry point
+│   ├── index.css                   # Global styles
+│   ├── theme.css                   # Theme variables
+│   ├── light-theme.css             # Light theme styles
+│   └── responsive.css              # Responsive styles
 ├── package.json
 ├── tsconfig.json
 └── README.md
