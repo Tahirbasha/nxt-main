@@ -65,9 +65,9 @@ nxt-main/
 │   │   │   ├── apis.ts
 │   │   │   └── svg-paths.ts
 │   │   ├── gaming/                 # Gaming page component
-│   │   │   └── gamingPage.tsx
+│   │   │   └── gaming-page.tsx
 │   │   ├── home-page/              # Home page component
-│   │   │   └── homePage.tsx
+│   │   │   └── home-page.tsx
 │   │   ├── layout/                 # Layout components
 │   │   │   ├── failure-view.tsx
 │   │   │   ├── header.tsx
@@ -76,7 +76,7 @@ nxt-main/
 │   │   ├── login/                  # Authentication component
 │   │   │   └── login.tsx
 │   │   ├── not-found/              # 404 error page
-│   │   │   └── notFoundView.tsx
+│   │   │   └── not-found-view.tsx
 │   │   ├── redux-store/            # Redux store configuration
 │   │   │   ├── app-data.ts
 │   │   │   ├── layout.ts
@@ -85,14 +85,14 @@ nxt-main/
 │   │   ├── routes/                  # Route definitions
 │   │   │   └── routes.tsx
 │   │   ├── saved-videos/           # Saved videos page
-│   │   │   └── savedVideos.tsx
+│   │   │   └── saved-videos.tsx
 │   │   ├── trending/               # Trending videos page
-│   │   │   └── trendingPage.tsx
+│   │   │   └── trending-page.tsx
 │   │   ├── utils/                  # Utility components
 │   │   │   └── loader.tsx
 │   │   └── video-item/             # Video-related components
-│   │       ├── Video.tsx
-│   │       └── videoDetailedPage.tsx
+│   │       ├── video.tsx
+│   │       └── video-detailed-page.tsx
 │   ├── App.tsx                     # Main App component
 │   ├── App.css                     # App styles
 │   ├── index.tsx                   # Application entry point
