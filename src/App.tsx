@@ -3,7 +3,7 @@ import './theme.css';
 import './light-theme.css';
 import './responsive.css';
 import React, { useEffect, useState } from 'react';
-import AppRoutes from './components/routes/routes';
+import AppRoutes from './components/routes';
 import Header from './components/layout/header';
 import SideNav from './components/layout/side-nav';
 import Login from './components/login/login';
