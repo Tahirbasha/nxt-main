@@ -109,8 +109,8 @@ nxt-main/
 
 ### Prerequisites
 
-- **Node.js** (v14.0.0 or higher)
-- **npm** (v6.0.0 or higher) or **yarn**
+- **Node.js** (v24.0.0 or higher)
+- **npm** (v10.0.0 or higher) or **yarn**
 
 ### Installation
 
